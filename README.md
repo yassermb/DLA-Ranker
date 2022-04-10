@@ -66,8 +66,6 @@ DLA-Ranker can be run on Linux, MacOS, and Windows. We recommend to use DLA-Rank
 
 All-in-one: Run conda create --name dla-ranker --file dla-ranker.yml
 
-- For requirements of InteractionGNN please visit its Readme.
-
 ## Tutorial
 
 DLA-Ranker works in two steps:
