@@ -58,7 +58,8 @@ the interfacial residues along with their neighboring atoms and the regions of t
 #### Packages:
 
 DLA-Ranker can be run on Linux, MacOS, and Windows. We recommend to use DLA-Ranker on the machines with GPU. It requires following packages:
-- NACCESS
+- [NACCESS] (http://www.bioinf.manchester.ac.uk/naccess/)
+- [ProDy] (http://prody.csb.pitt.edu/) 
 - Python version 3.7 or 3.8.
 - Tensorflow version 2.2 or 2.3.
 - Cuda-Toolkit
