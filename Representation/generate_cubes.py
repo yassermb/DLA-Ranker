@@ -49,7 +49,7 @@ if not path.exists(map_dir):
     mkdir(map_dir)
 
 
-bin_path = "./mapsGenerator/build/maps_generator"
+bin_path = "./maps_generator"
 v_dim = 24
 
 def mapcomplex(file, pose_class, ch1, ch2, pair, pose):
@@ -172,10 +172,10 @@ def process_targetcomplex(targetcomplex, comp_dir, report_dict):
         bad_poses = confom_dict.loc[(confom_dict.Comp == targetcomplex) & (confom_dict.Class == 0)].Conf.to_list()
         ch1, ch2 =  confom_dict.loc[confom_dict.Comp == targetcomplex][['ch1','ch2']].iloc[0]
         for pose in good_poses:
-            file = path.join(comp_dir, pose + '.pdb')
+            file = path.join(comp_dir, targetcomplex, pose + '.pdb')
             mapcomplex(file, '1', ch1, ch2, targetcomplex, path.basename(pose))
         for pose in bad_poses:
-            file = path.join(comp_dir, pose)
+            file = path.join(comp_dir, targetcomplex, pose + '.pdb')
             mapcomplex(file, '0', ch1, ch2, targetcomplex, path.basename(pose))
     
     except Exception as e:

@@ -12,7 +12,6 @@ import pickle
 import shutil
 import pypdb
 import pandas as pd
-import protein as pr
 from prody import *
 from os import path, mkdir, remove, getenv, listdir, system
 from io import StringIO
