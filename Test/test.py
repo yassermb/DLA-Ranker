@@ -81,8 +81,8 @@ map_dir = '../Examples/map_dir'
 
 samples_test = listdir(map_dir)
 
-#model = load_model(path.join('../Examples', 'MODELS', 'Dockground', '0_model'))
-model = load_model(path.join('../Examples', 'MODELS', 'BM5', '0_model'))
+#model = load_model(path.join('../Models', 'Dockground', '0_model'))
+model = load_model(path.join('../Models', 'BM5', '0_model'))
 
 predictions_file = open('../Examples/predictions_SCR', 'w')
 

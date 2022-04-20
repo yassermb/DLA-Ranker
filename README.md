@@ -135,7 +135,7 @@ Example
 Each output represents interface of a conformation and contains a set of local environments (*e.g. atomic density map, structure classes (S,C,R), topology of the interface, ...*)
 
 An atomic density map is a 4 dimensional tensor: a voxelized 3D grid with a size of ```24*24*24```. Each voxel encodes some characteristics of the protein atoms. Namely, the first 167 dimensions correspond to the
-atom types that can be found in amino acids (without the hydrogen). This dimension can be reduced to 4 element symbols (C,N,O,S) by running ```python generate_cubes_reduce_channels_multiproc.py``` (ATTENTION: This code overwrites the existing files). 
+atom types that can be found in amino acids (without the hydrogen). This dimension can be reduced to 4 element symbols (C,N,O,S) by running ```python generate_cubes_reduce_channels_multiproc.py``` (ATTENTION: This code overwrites the existing files). Dimension reduction must be applied in order to use models of BM5 as well as the general model. 
 
 ### Deep learning framework
 
@@ -167,7 +167,7 @@ One can associate the Residues' numbers, regions, scores, and partner to evaluat
 
 #### Extraction of the embeddings
 From directory 'Test' run ```python extract_embeddings.py```
-It extracts embeddings and the topology for each given interface and write them in a an output file with the same name. Each row in a file belongs to a residue and includes the its coordinates, its region, and its embedding vector. These files can be used for aggregation of embeddings based on graph-learning.
+It extracts embeddings and the topology for given interfaces and write them in directory 'Examples/intermediate'. For each conformation it produces an output file with the same name. Each row in a file belongs to a residue and includes the its coordinates, its region, and its embedding vector. These files can be used for aggregation of embeddings based on graph-learning.
 
 #### Acknowledgement
 We would like to thank Dr. Sergei Grudinin and his team for helping us with the initial source code of ```maps_generator``` and ```load_data.py```. See [Ornate](https://academic.oup.com/bioinformatics/article/35/18/3313/5341430?login=true).

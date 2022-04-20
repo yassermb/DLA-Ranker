@@ -95,7 +95,8 @@ if path.isdir(intermediate_dir):
     shutil.rmtree(intermediate_dir)
 mkdir(intermediate_dir)
 
-model = load_model(path.join('../Examples', 'MODELS', 'Dockground', '0_model'))
+#model = load_model(path.join('../Models', 'Dockground', '0_model'))
+model = load_model(path.join('../Models', 'BM5', '0_model'))
 
 def load_map(sample_path):
     check_call(
@@ -138,7 +139,7 @@ for test_interface in batch_samples_test:
     intermediate_prediction = intermediate_model.predict([X_test, X_aux], batch_size=X_test.shape[0])
     _ = gc.collect()
 
-    with open(test_interface.replace(map_dir, intermediate_dir).replace('.pkl','.graph'),'w') as f_handler_graph:
+    with open(test_interface.replace(map_dir, intermediate_dir).replace('.pkl.lz4','.graph'),'w') as f_handler_graph:
         for i in range(len(X_test)):
             f_handler_graph.write(','.join(list(map(lambda x: str(x), res_pos[i]))) + ',' +
                                   reg_type[i] + ',' +
