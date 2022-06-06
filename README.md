@@ -58,8 +58,9 @@ the interfacial residues along with their neighboring atoms and the regions of t
 #### Packages:
 
 DLA-Ranker can be run on Linux, MacOS, and Windows. We recommend to use DLA-Ranker on the machines with GPU. It requires following packages:
-- [NACCESS](http://www.bioinf.manchester.ac.uk/naccess/)
+- [FreeSASA](https://github.com/mittinatten/freesasa) or [NACCESS] (http://www.bioinf.manchester.ac.uk/naccess/)
 - [ProDy](http://prody.csb.pitt.edu/) 
+- lz4 compression tool
 - Python version 3.7 or 3.8.
 - Tensorflow version 2.2 or 2.3.
 - Cuda-Toolkit
@@ -105,7 +106,9 @@ Example
 
 
 #### Processing the conformations
-Specify the path to NACCESS in ```lib/tools.py``` (```NACCESS_PATH```). From directory 'Representation' run: ```python generate_cubes.py```
+Specify the path to FreeSASA or NACCESS in ```lib/tools.py``` (```FREESASA_PATH``` or ```NACCESS_PATH```). <br>
+If you have 'Nvidia GPU' on your computer, or execute on 'Google COLAB', set ```FORCE_CPU = False```. Otherwise set ```FORCE_CPU = True```. <br>
+From directory 'Representation' run: ```python generate_cubes.py```
 
 The output will be directory 'map_dir' with the following structure:
 
