@@ -10,6 +10,7 @@ import re
 import os
 import sys
 from os import path, remove
+import glob
 
 sys.path.insert(1, '../lib/')
 import tools as tl
@@ -178,13 +179,21 @@ def rimcoresup(rsa_rec,rsa_lig,rsa_complex):
     return rim, core, support
 
 def get_scr(rec, lig, com, name):
-    #print('rec', path.basename(rec.replace('pdb', 'rsa')))
-    cmdcompl=tl.NACCESS_PATH + ' ' + com
-    os.system(cmdcompl) 
-    cmdrec=tl.NACCESS_PATH + ' ' + rec
-    os.system(cmdrec) 
-    cmdlig=tl.NACCESS_PATH + ' ' + lig
-    os.system(cmdlig)
+    
+    if tl.USE_FREESASA:
+        cmdcompl=tl.NACCESS_PATH + ' --format=rsa ' + com + ' > ' + path.basename(com.replace('pdb', 'rsa'))
+        os.system(cmdcompl) 
+        cmdrec=tl.NACCESS_PATH + ' --format=rsa ' + rec + ' > ' + path.basename(rec.replace('pdb', 'rsa'))
+        os.system(cmdrec) 
+        cmdlig=tl.NACCESS_PATH + ' --format=rsa ' + lig + ' > ' + path.basename(lig.replace('pdb', 'rsa'))
+        os.system(cmdlig)    
+    else:
+        cmdcompl=tl.NACCESS_PATH + ' ' + com
+        os.system(cmdcompl) 
+        cmdrec=tl.NACCESS_PATH + ' ' + rec
+        os.system(cmdrec) 
+        cmdlig=tl.NACCESS_PATH + ' ' + lig
+        os.system(cmdlig)
  
     # ('GLN', 'B', '44', '55.7', 'receptor')
     rim,core,support = rimcoresup(path.basename(rec.replace('pdb', 'rsa')), path.basename(lig.replace('pdb', 'rsa')), path.basename(com.replace('pdb', 'rsa')))
@@ -198,15 +207,32 @@ def get_scr(rec, lig, com, name):
         outprimcoresup.write(str((' '.join(map(str,elementsup)))+" S")+"\n") #Support
 
     outprimcoresup.close()
-    remove(path.basename(rec.replace('pdb', 'rsa')))
-    remove(path.basename(rec.replace('pdb', 'asa')))
-    remove(path.basename(rec.replace('pdb', 'log')))
     
+    for f in glob.glob("*.rsa"):
+        try:
+            remove(f)
+        except:
+            continue
+        
+    for f in glob.glob("*.asa"):
+        try:
+            remove(f)
+        except:
+            continue
+    
+    """
+    remove(path.basename(rec.replace('pdb', 'rsa')))    
     remove(path.basename(lig.replace('pdb', 'rsa')))
-    remove(path.basename(lig.replace('pdb', 'asa')))
-    remove(path.basename(lig.replace('pdb', 'log')))
-    
     remove(path.basename(com.replace('pdb', 'rsa')))
+    remove(path.basename(rec.replace('pdb', 'asa')))
+    remove(path.basename(lig.replace('pdb', 'asa')))
     remove(path.basename(com.replace('pdb', 'asa')))
-    remove(path.basename(com.replace('pdb', 'log')))
+    """
+    
+    try:
+        remove(path.basename(rec.replace('pdb', 'log')))
+        remove(path.basename(lig.replace('pdb', 'log')))
+        remove(path.basename(com.replace('pdb', 'log')))
+    except:
+        pass
 ########################

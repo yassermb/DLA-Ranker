@@ -39,23 +39,26 @@ from sklearn.metrics import mean_squared_error, accuracy_score, roc_auc_score, r
 from sklearn.preprocessing import MinMaxScaler
 import pickle
 
+sys.path.insert(1, '../lib/')
+import tools as tl
+
 print('Your python version: {}'.format(sys.version_info.major))
 USE_TENSORFLOW_AS_BACKEND = True
-# IF YOU *DO* HAVE AN Nvidia GPU on your computer, or execute on Google COLAB, then change below to False!
-FORCE_CPU = False #False 
+ 
 if USE_TENSORFLOW_AS_BACKEND:
     os.environ['KERAS_BACKEND'] = 'tensorflow'
 else:
     os.environ['KERAS_BACKEND'] = 'theano'
-if FORCE_CPU:
+if tl.FORCE_CPU:
     os.environ["CUDA_DEVICE_ORDER"] = "PCI_BUS_ID"   # see issue #152
     os.environ["CUDA_VISIBLE_DEVICES"] = ""
 if USE_TENSORFLOW_AS_BACKEND == True:
     import tensorflow as tf
     print('Your tensorflow version: {}'.format(tf.__version__))
-    print("GPU : "+tf.test.gpu_device_name())
-    physical_devices = tf.config.experimental.list_physical_devices('GPU')
-    tf.config.experimental.set_memory_growth(physical_devices[0], True)
+    if not tl.FORCE_CPU:
+        print("GPU : "+tf.test.gpu_device_name())
+        physical_devices = tf.config.experimental.list_physical_devices('GPU')
+        tf.config.experimental.set_memory_growth(physical_devices[0], True)
 else:
     import theano
     print('Your theano version: {}'.format(theano.__version__))
@@ -67,6 +70,7 @@ logging.Logger
 seed(int(np.round(np.random.random()*10)))
 #################################################################################################
 
+"""
 def save_obj(obj, name):
     with open(name + '.pkl', 'wb') as f:
         pickle.dump(obj, f, pickle.HIGHEST_PROTOCOL)
@@ -74,6 +78,7 @@ def save_obj(obj, name):
 def load_obj(name):
     with open(name + '.pkl', 'rb') as f:
         return pickle.load(f)
+"""
 
 v_dim = 24
 
@@ -93,7 +98,7 @@ def load_map(sample_path):
             sample_path
         ],
         stdout=sys.stdout)
-    X_train, y_train, reg_type, res_pos,_,info = load_obj(sample_path.replace('.pkl.lz4',''))
+    X_train, y_train, reg_type, res_pos,_,info = tl.load_obj(sample_path.replace('.pkl.lz4',''))
     remove(sample_path.replace('.lz4',''))
     return X_train, y_train, reg_type, res_pos, info
 

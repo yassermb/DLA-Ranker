@@ -24,8 +24,10 @@ import sys
 import gzip
 
 #========================================================
-#NACCESS
+FORCE_CPU = False # IF YOU *DO* HAVE AN Nvidia GPU on your computer, or execute on Google COLAB, then change this option to False!
+USE_FREESASA = True
 NACCESS_PATH='naccess'
+FreeSASA_PATH='freesasa'
 #========================================================
 
 
