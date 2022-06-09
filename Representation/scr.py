@@ -181,11 +181,11 @@ def rimcoresup(rsa_rec,rsa_lig,rsa_complex):
 def get_scr(rec, lig, com, name):
     
     if tl.USE_FREESASA:
-        cmdcompl=tl.NACCESS_PATH + ' --format=rsa ' + com + ' > ' + path.basename(com.replace('pdb', 'rsa'))
+        cmdcompl=tl.FreeSASA_PATH + ' --format=rsa ' + com + ' > ' + path.basename(com.replace('pdb', 'rsa'))
         os.system(cmdcompl) 
-        cmdrec=tl.NACCESS_PATH + ' --format=rsa ' + rec + ' > ' + path.basename(rec.replace('pdb', 'rsa'))
+        cmdrec=tl.FreeSASA_PATH + ' --format=rsa ' + rec + ' > ' + path.basename(rec.replace('pdb', 'rsa'))
         os.system(cmdrec) 
-        cmdlig=tl.NACCESS_PATH + ' --format=rsa ' + lig + ' > ' + path.basename(lig.replace('pdb', 'rsa'))
+        cmdlig=tl.FreeSASA_PATH + ' --format=rsa ' + lig + ' > ' + path.basename(lig.replace('pdb', 'rsa'))
         os.system(cmdlig)    
     else:
         cmdcompl=tl.NACCESS_PATH + ' ' + com
