@@ -106,8 +106,10 @@ Example
 
 
 #### Processing the conformations
-Specify the path to FreeSASA or NACCESS in ```lib/tools.py``` (```FREESASA_PATH``` or ```NACCESS_PATH```). <br>
-If you have 'Nvidia GPU' on your computer, or execute on 'Google COLAB', set ```FORCE_CPU = False```. Otherwise set ```FORCE_CPU = True```. <br>
+Specify the path to FreeSASA or NACCESS in ```lib/tools.py``` (```FREESASA_PATH``` or ```NACCESS_PATH```). The choice between FreeSASA or NACCESS can be specified in the ```lib/tools.py``` (default is ```USE_FREESASA = True```). <br>
+<br>
+If you have 'Nvidia GPU' on your computer, or execute on 'Google COLAB', set ```FORCE_CPU = False``` in ```lib/tools.py```. Otherwise set ```FORCE_CPU = True``` (default is ```FORCE_CPU=False```). <br>
+<br>
 From directory 'Representation' run: ```python generate_cubes.py```
 
 The output will be directory 'map_dir' with the following structure:
