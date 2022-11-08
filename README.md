@@ -38,7 +38,7 @@ the interfacial residues along with their neighboring atoms and the regions of t
 
 - Classification of docking conformations based on CAPRI criteria (Incorrect, Acceptable, Medium, High quality)
 
-- Fast generation of cubes and and evaluation of interface.
+- Fast generation of cubes and evaluation of interface.
 
 - Training and testing 3D-CNN models.
 
